@@ -53,6 +53,7 @@ function navPlaceholder() {
     `;
   document.querySelector(".nav-placeholder").innerHTML = nav;
 }
+navPlaceholder();
 
 document.addEventListener("scroll", () => {
   const toTopBTN = document.querySelector(".navbar-color");
@@ -62,6 +63,34 @@ document.addEventListener("scroll", () => {
     toTopBTN.classList.remove("scrolled");
   }
 });
+
+function spaDisplay() {
+  const id = window.location.search.slice(1);
+  fetch(`http://localhost:3000/products/${id}`)
+    .then((res) => res.json())
+    .then((product) => spaDataDisplay(product));
+  function spaDataDisplay(product) {
+    let x = ``;
+    x = `
+        <div class="col">
+        <div class="card">
+        <img
+        src="${product.thumbnail ? product.thumbnail : "img2.jpg"}"
+        class="card-img-top"
+        alt="img-1"
+        />
+        <div class="card-body">
+        <h5 class="card-title">${product.title}</h5>
+        <p class="card-text">${product.description}
+        </p>
+        <a href="#" class="btn btn-dark">Buy Now</a>
+        </div>
+        </div>
+        </div>`;
+    document.querySelector("#spa-display").innerHTML = x;
+  }
+}
+spaDisplay();
 
 document.addEventListener("scroll", () => {
   const toTopBTN = document.querySelector(".to-top");
@@ -82,46 +111,3 @@ function toTop() {
         `;
   document.querySelector(".top-btn").innerHTML = goTopBTN;
 }
-
-function productsFetch() {
-  fetch("http://localhost:3000/products")
-    .then((response) => response.json())
-    .then((data) => {
-      displayData(data);
-    });
-  function displayData(data) {
-    let m = ``;
-    for (let i = 0; i < data.length; i++) {
-      m += `
-        <div class="col">
-        <div class="card">
-        <img
-        src="${data[i].thumbnail ? data[i].thumbnail : "img2.jpg"}"
-        class="card-img-top"
-        alt="img-1"
-        />
-        <div class="card-body">
-        <h5 class="card-title">${data[i].title}</h5>
-        <p class="card-text">${data[i].description}
-        </p>
-        <a href="single-product.html?${
-          data[i].id
-        }" class="btn btn-dark" id="spa-btn">Buy Now</a>
-        </div>
-        </div>
-        </div>`;
-    }
-    document.querySelector("#products-cards-display").innerHTML = m;
-  }
-}
-
-function loadMoreProducts() {
-  document.querySelector("#load-more-btn").addEventListener("click", () => {
-    window.location.href = "Products.html";
-  });
-}
-
-navPlaceholder();
-toTop();
-productsFetch();
-loadMoreProducts();
