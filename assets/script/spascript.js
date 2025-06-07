@@ -53,7 +53,6 @@ function navPlaceholder() {
     `;
   document.querySelector(".nav-placeholder").innerHTML = nav;
 }
-navPlaceholder();
 
 document.addEventListener("scroll", () => {
   const toTopBTN = document.querySelector(".navbar-color");
@@ -100,15 +99,34 @@ function spaDisplay() {
               style="width: 80px"
             />
           </div>
-          <button class="btn btn-primary btn-lg mb-3 me-2">
+          <button class="btn btn-dark btn-lg mb-3 me-2 add-to-cart-btn" onclick="addToCart()">
             <i class="bi bi-cart-plus"></i> Add to Cart
           </button>
+          <div class="spinner-border d-none" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </div>
         `;
     document.querySelector("#spa-display").innerHTML = x;
   }
 }
 
+function addToCart() {
+  const addToCartBtn = document.querySelector(".add-to-cart-btn");
+  const spinner = document.querySelector(".spinner-border");
+  addToCartBtn.addEventListener("click", () => {
+    addToCartBtn.classList.add("d-none");
+    spinner.classList.remove("d-none");
+    setTimeout(() => {
+      spinner.classList.add("d-none");
+      addToCartBtn.classList.remove("d-none");
+      addToCartBtn.innerHTML = `<i class="bi bi-check-circle"></i> Added to Cart`;
+    }, 1000);
+    setTimeout(() => {
+      addToCartBtn.innerHTML = `<i class="bi bi-cart-plus"></i> Add to Cart`;
+    }, 2000);
+  });
+}
 
 document.addEventListener("scroll", () => {
   const toTopBTN = document.querySelector(".to-top");
@@ -129,7 +147,6 @@ function toTop() {
         `;
   document.querySelector(".top-btn").innerHTML = goTopBTN;
 }
-
 
 function footerPlaceholder() {
   const footer = `      <div class="container">
@@ -197,6 +214,6 @@ function footerPlaceholder() {
   document.querySelector("#footer-placeholder").innerHTML = footer;
 }
 navPlaceholder();
-toTop();
 spaDisplay();
-footerPlaceholder()
+toTop();
+footerPlaceholder();
