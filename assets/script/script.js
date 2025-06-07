@@ -101,8 +101,14 @@ function productsFetch() {
         alt="img-1"
         />
         <div class="card-body">
-        <h5 class="card-title">${data[i].title}</h5>
-        <p class="card-text">${data[i].description}
+        <h5 class="card-title">${data[i].title
+          .split(" ")
+          .slice(0, 3)
+          .join(" ")}...</h5>
+        <p class="card-text">${data[i].description
+          .split(" ")
+          .slice(0, 10)
+          .join(" ")}...</p>
         </p>
         <a href="single-product.html?${
           data[i].id
@@ -121,7 +127,75 @@ function loadMoreProducts() {
   });
 }
 
+function footerPlaceholder() {
+  const footer = `
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <h5>About Us</h5>
+            <p>
+              this is a project for the <strong>5alefa el negm</strong> course,
+              designed to showcase my skills in web development.
+            </p>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="Home.html" class="text-decoration-none text-white"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a href="About.html" class="text-decoration-none text-white"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="Contact-Us.html"
+                  class="text-decoration-none text-white"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h5>Follow Us</h5>
+            <ul class="list-inline social-icons">
+              <li class="list-inline-item">
+                <a href="https://www.facebook.com/" class="text-white"
+                  ><i class="fa-brands fa-facebook"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://x.com/" class="text-white"
+                  ><i class="fa-brands fa-square-x-twitter"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com/" class="text-white"
+                  ><i class="fa-brands fa-instagram"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="mb-4" />
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>
+              &copy; 2025 <strong>5alefa el negm</strong> project. All rights
+              reserved.
+            </p>
+          </div>
+        </div>
+      </div>`;
+  document.querySelector("#footer-placeholder").innerHTML = footer;
+}
+
 navPlaceholder();
+footerPlaceholder();
 toTop();
 productsFetch();
 loadMoreProducts();

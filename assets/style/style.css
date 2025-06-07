@@ -2,6 +2,8 @@
   --primary-color: #bf5027; /* Orange */
   --secondary-color: #f1f1f1; /* Light Gray */
   --headerText-color: #ffffff; /* White */
+  --footer-color: #343a40; /* Dark Gray */
+  --footer-text-color: #f1f1f1; /* White */
   --text-color: #333; /* Dark Gray */
   --font-family: "Tajawal", Helvetica, Arial, sans-serif;
 }
@@ -89,4 +91,32 @@ body > nav > div > button {
 
 .to-top.show {
   transform: scale(1);
+}
+
+.product-image {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  opacity: 1;
+}
+
+#footer-placeholder {
+  background-color: var(--footer-color);
+  color: var(--footer-text-color);
+}
+
+.social-icons a {
+  font-size: 1.25rem;
 }
