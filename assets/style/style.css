@@ -40,13 +40,15 @@ body > nav > div > button {
 #navbarSupportedContent {
   flex-grow: 0 !important;
 }
+
 @media (max-width: 991.98px) {
   .login-btn {
     display: none !important;
   }
 
   .contact-us-form,
-  .cuFeedback {
+  .cuFeedback,
+  .registerForm {
     width: 100% !important;
   }
 }
@@ -59,6 +61,10 @@ body > nav > div > button {
   .contact-us-form,
   .cuFeedback {
     width: 50% !important;
+  }
+
+  .registerForm {
+    width: 30% !important;
   }
 }
 

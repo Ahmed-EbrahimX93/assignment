@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "Leanne Graham",
+      "email": "LmK2M@example.com",
+      "password": "password123",
+      "role": "admin"
+    },
+    {
+      "id": 1749497446705,
+      "name": "ahmed",
+      "email": "ahmed@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 1749498620269,
+      "name": "ahmed",
+      "email": "ahmed.ebrahim@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 1749498945893,
+      "name": "sayed",
+      "email": "sayed@gmail.com",
+      "password": "123456"
+    }
+  ]
+}
