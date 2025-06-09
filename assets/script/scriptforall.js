@@ -150,6 +150,97 @@ function footerPlaceholder() {
   document.querySelector("#footer-placeholder").innerHTML = footer;
 }
 
+function collectData() {
+  const submitBtn = document.getElementById("submit-btn");
+  const nameInput = document.getElementById("contactUsName");
+  const emailInput = document.getElementById("contactUsEmail");
+  const messageInput = document.getElementById("contactUsFeedback");
+  let usersFeedback = [];
+
+  submitBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    pushFeedbackData();
+    errorDisplay();
+    clearData();
+  });
+
+  function pushFeedbackData() {
+    let contactUsFeedback = {
+      name: nameInput.value,
+      email: emailInput.value,
+      message: messageInput.value,
+    };
+
+    if (
+      nameInput.value.length != 0 ||
+      emailInput.value.length != 0 ||
+      messageInput.value.length != 0
+    ) {
+      usersFeedback.push(contactUsFeedback);
+    }
+  }
+
+  function errorDisplay() {
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const messageError = document.getElementById("messageError");
+    const nError = `<p>Please Enter your name</p>`;
+    const eError = `<p>Please Enter your email</p>`;
+    const mError = `<p>Please Enter your message</p>`;
+    if (nameInput.value.length == 0) {
+      nameError.innerHTML = nError;
+      nameError.style.color = "red";
+    } else if (emailInput.value.length == 0) {
+      emailError.innerHTML = eError;
+      emailError.style.color = "red";
+    } else if (messageInput.value.length == 0) {
+      messageError.innerHTML = mError;
+      messageError.style.color = "red";
+    } else {
+      nameError.style.display = "none";
+      emailError.style.display = "none";
+      messageError.style.display = "none";
+      displayData();
+    }
+  }
+
+  function clearData() {
+    nameInput.value = "";
+    emailInput.value = "";
+    messageInput.value = "";
+  }
+
+  function displayData() {
+    const display = document.querySelector(".cuFeedback");
+    let output = ``;
+    for (let i = 0; i < usersFeedback.length; i++) {
+      output = `
+      <h2 class="text-center">Feedbacks</h2>
+      <div class="feedback-list" id="feedback-list">
+        <div class="feedback-item border rounded-4 p-3 m-3">
+          <div class="feedback">
+            <h3 class="feedback-name">${nameInput.value}</h3>
+            <p class="feedback-email">${emailInput.value}</p>
+            <p class="feedback-message">${messageInput.value}</p>
+          </div>
+          <button class="btn btn-outline-danger" type="button" id="delete-btn-${i}">Delete</button>
+        </div>
+      </div>
+      `;
+    }
+    display.innerHTML = output;
+
+    for (let i = 0; i < usersFeedback.length; i++) {
+      const deleteBtn = document.getElementById(`delete-btn-${i}`);
+      deleteBtn.addEventListener("click", () => deleteData(i));
+    }
+  }
+  function deleteData(index) {
+    usersFeedback.splice(index, 1);
+    displayData();
+  }
+}
+
 navPlaceholder();
 footerPlaceholder();
 toTop();

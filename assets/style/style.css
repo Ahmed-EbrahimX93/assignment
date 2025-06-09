@@ -45,7 +45,8 @@ body > nav > div > button {
     display: none !important;
   }
 
-  .contact-us-form {
+  .contact-us-form,
+  .cuFeedback {
     width: 100% !important;
   }
 }
@@ -55,7 +56,8 @@ body > nav > div > button {
     display: none !important;
   }
 
-  .contact-us-form {
+  .contact-us-form,
+  .cuFeedback {
     width: 50% !important;
   }
 }
