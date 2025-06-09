@@ -285,7 +285,60 @@ function collectData() {
   }
 }
 
+function spaDisplay() {
+  const id = window.location.search.slice(1);
+  fetch(`http://localhost:3000/products/${id}`)
+    .then((res) => res.json())
+    .then((product) => spaDataDisplay(product));
+  function spaDataDisplay(product) {
+    let x = ``;
+    x = `
+        <div class="col-md-6 mb-4">
+          <img
+            src="${product.thumbnail ? product.thumbnail : "img2.jpg"}"
+            alt="Product"
+            class="img-fluid rounded mb-3 product-image"
+            id="mainImage"
+          />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h2 class="mb-3">${product.title}</h2>
+          <p class="text-muted mb-4">SKU: ${product.sku}</p>
+          <div class="mb-3">
+            <span class="h4 me-2">$${product.discountPercentage}</span>
+            <span class="text-muted"><s>$${product.price}</s></span>
+          </div>
+          <p class="mb-4">${product.description}</p>
+          <div class="mb-4">
+            <label for="quantity" class="form-label">Quantity:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="quantity"
+              value="1"
+              min="1"
+              style="width: 80px"
+            />
+          </div>
+          <button class="btn btn-dark btn-lg mb-3 me-2 add-to-cart-btn" onclick="addToCart()">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+          <div class="spinner-border d-none" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        `;
+    document.querySelector("#spa-display").innerHTML = x;
+  }
+}
+
 navPlaceholder();
 footerPlaceholder();
 toTop();
-productsFetch();
+if (document.querySelector("#products-cards-display")) {
+  productsFetch();
+}
+if (document.querySelector("#spa-display")) {
+  spaDisplay();
+}

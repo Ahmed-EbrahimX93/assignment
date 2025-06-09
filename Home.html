@@ -1,99 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="../assignment/assets/images/d9ecb806-edb1-44b8-85ee-2cac660f95e7-32x32.png"
-      type="image/x-icon"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="stylesheet"
-      href="../assignment/assets/style/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="../assignment/assets/style/style.css" />
-    <title>Home</title>
-  </head>
-  <body>
-    <div class="nav-placeholder"></div>
 
-    <div
-      id="carouselExampleInterval"
-      class="carousel slide"
-      data-bs-ride="carousel"
-    >
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-          <img
-            src="assets/images/74a632f6-8220-41dd-8394-e470dfc670e9.png"
-            class="d-block w-100"
-            alt="image-1"
-          />
-        </div>
-        <div class="carousel-item" data-bs-interval="2000">
-          <img
-            src="assets/images/9481f654-983e-4205-adc5-c730d8e1c70d.png"
-            class="d-block w-100"
-            alt="image-2"
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="assets/images/9481f654-983e-4205-adc5-c730d8e1c70d.png"
-            class="d-block w-100"
-            alt="image-3"
-          />
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../assignment/assets/images/d9ecb806-edb1-44b8-85ee-2cac660f95e7-32x32.png"
+    type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../assignment/assets/style/bootstrap.min.css" />
+  <link rel="stylesheet" href="../assignment/assets/style/style.css" />
+  <title>Home</title>
+</head>
+
+<body>
+  <div class="nav-placeholder"></div>
+
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="assets/images/74a632f6-8220-41dd-8394-e470dfc670e9.png" class="d-block w-100" alt="image-1" />
       </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleInterval"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleInterval"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-
-    <div class="products-cards mt-4 mb-4 px-4">
-      <div
-        class="row row-cols-1 row-cols-md-3 g-4"
-        id="products-cards-display"
-      ></div>
-      <div>
-        <button
-          class="btn btn-dark mt-3 text-center d-block mx-auto"
-          id="load-more-btn"
-          onclick="loadMoreProducts()"
-        >
-          Load More Products
-        </button>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="assets/images/9481f654-983e-4205-adc5-c730d8e1c70d.png" class="d-block w-100" alt="image-2" />
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/9481f654-983e-4205-adc5-c730d8e1c70d.png" class="d-block w-100" alt="image-3" />
       </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
-    <footer class="mt-auto p-5" id="footer-placeholder"></footer>
+  <div class="products-cards mt-4 mb-4 px-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="products-cards-display"></div>
+    <div>
+      <button class="btn btn-dark mt-3 text-center d-block mx-auto" id="load-more-btn" onclick="loadMoreProducts()">
+        Load More Products
+      </button>
+    </div>
+  </div>
 
-    <div class="top-btn"></div>
+  <footer class="mt-auto p-5" id="footer-placeholder"></footer>
 
-    <script src="../assignment/assets/script/bootstrap.bundle.min.js"></script>
-    <script src="../assignment/assets/script/script.js"></script>
-  </body>
+  <div class="top-btn"></div>
+
+  <script src="../assignment/assets/script/bootstrap.bundle.min.js"></script>
+  <script src="../assignment/assets/script/script.js"></script>
+</body>
+
 </html>
