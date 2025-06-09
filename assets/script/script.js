@@ -335,12 +335,9 @@ function spaDisplay() {
 function register() {
   const inputs = document.querySelectorAll("input");
   const registerBtn = document.getElementById("register-btn");
-  const nameInput = document.getElementById("registerName");
-  const emailInput = document.getElementById("registerEmail");
-  const passwordInput = document.getElementById("registerPassword");
-  const nameError = document.getElementById("nameError");
-  const emailError = document.getElementById("emailError");
-  const passwordError = document.getElementById("passwordError");
+  const nameInput = document.getElementById("Name");
+  const emailInput = document.getElementById("Email");
+  const passwordInput = document.getElementById("Password");
   const userNameRegex = /^[A-Z]{1}[a-z]{3,}$/;
   const emailRegex = /^[a-z]{3,}@(gmail||yahoo).com$/;
   const passwordRegex = /^[0-9]{8,}$/;
@@ -354,76 +351,112 @@ function register() {
   registerBtn.addEventListener("click", function (e) {
     e.preventDefault();
     pushRegisterData();
-    errorDisplay();
-    clearData();
   });
 
   function errorDisplay() {
-    const nError = `<p>Please Enter your name</p>`;
-    const eError = `<p>Please Enter your email</p>`;
-    const pError = `<p>Please Enter your password</p>`;
-
-    if (nameInput.value.length == 0) {
-      nameError.innerHTML = nError;
-      nameError.style.color = "red";
-    } else if (!userNameRegex.test(nameInput.value)) {
-      nameError.style.color = "red";
-      nameError.innerHTML =
-        "the full name should start with uppercase and at least 3 chars";
-    } else if (emailInput.value.length == 0) {
-      emailError.innerHTML = eError;
-      emailError.style.color = "red";
-    } else if (!emailRegex.test(emailInput.value)) {
-      nameError.style.color = "red";
-      nameError.innerHTML =
-        "the email should be at least 3 chars and contains gmail or yahoo";
-    } else if (passwordInput.value.length == 0) {
-      passwordError.innerHTML = pError;
-      passwordError.style.color = "red";
-    } else if (!passwordRegex.test(passwordInput.value)) {
-      passwordError.style.color = "red";
-      passwordError.innerHTML = "the password should be at least 8 chars";
-    } else {
-      nameError.style.display = "none";
-      emailError.style.display = "none";
-      passwordError.style.display = "none";
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].value.length == 0) {
+        inputs[i].previousElementSibling.style.color = "red";
+        inputs[
+          i
+        ].previousElementSibling.innerHTML = `${inputs[i].name} is Required`;
+        error = true;
+      }
     }
-  }
 
-  function pushRegisterData() {
-    let registerData = {
-      id: Date.now(),
-      name: nameInput.value,
-      email: emailInput.value,
-      password: passwordInput.value,
-    };
+    if (nameInput.value.length != 0 && !userNameRegex.test(nameInput.value)) {
+      nameInput.previousElementSibling.style.color = "red";
+      nameInput.previousElementSibling.innerHTML =
+        "the full name should start with uppercase and at least 3 chars";
+      error = true;
+    }
+
+    if (emailInput.value.length != 0 && !emailRegex.test(emailInput.value)) {
+      emailInput.previousElementSibling.style.color = "red";
+      emailInput.previousElementSibling.innerHTML =
+        "the email should be at least 3 chars and contains gmail or yahoo";
+      error = true;
+    }
 
     if (
-      nameInput.value.length != 0 &&
-      emailInput.value.length != 0 &&
-      passwordInput.value.length != 0
+      passwordInput.value.length != 0 &&
+      !passwordRegex.test(passwordInput.value)
     ) {
-      fetch("http://localhost:3000/users")
-        .then((response) => response.json())
-        .then((data) => {
-          const existingUser = data.find(
-            (user) => user.email === registerData.email
-          );
-          if (existingUser) {
-            alert("Email already exists.");
-          } else {
-            fetch("http://localhost:3000/users", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(registerData),
-            })
-              .then((response) => response.json())
-              .then((data) => data);
-          }
-        });
+      passwordInput.previousElementSibling.style.color = "red";
+      passwordInput.previousElementSibling.innerHTML =
+        "the password should be at least 8 chars";
+      error = true;
     }
+
+    // const nError = `<p>Please Enter your name</p>`;
+    // const eError = `<p>Please Enter your email</p>`;
+    // const pError = `<p>Please Enter your password</p>`;
+
+    // if (nameInput.value.length == 0) {
+    //   nameError.innerHTML = nError;
+    //   nameError.style.color = "red";
+    // } else if (!userNameRegex.test(nameInput.value)) {
+    //   nameError.style.color = "red";
+    //   nameError.innerHTML =
+    //     "the full name should start with uppercase and at least 3 chars";
+    // } else if (emailInput.value.length == 0) {
+    //   emailError.innerHTML = eError;
+    //   emailError.style.color = "red";
+    // } else if (!emailRegex.test(emailInput.value)) {
+    //   nameError.style.color = "red";
+    //   nameError.innerHTML =
+    //     "the email should be at least 3 chars and contains gmail or yahoo";
+    // } else if (passwordInput.value.length == 0) {
+    //   passwordError.innerHTML = pError;
+    //   passwordError.style.color = "red";
+    // } else if (!passwordRegex.test(passwordInput.value)) {
+    //   passwordError.style.color = "red";
+    //   passwordError.innerHTML = "the password should be at least 8 chars";
+    // } else {
+    //   nameError.style.display = "none";
+    //   emailError.style.display = "none";
+    //   passwordError.style.display = "none";
+    // }
+  }
+
+  if (!error) {
+    errorDisplay();
+    function pushRegisterData() {
+      let registerData = {
+        id: Date.now(),
+        name: nameInput.value,
+        email: emailInput.value,
+        password: passwordInput.value,
+      };
+
+      if (
+        nameInput.value.length != 0 &&
+        emailInput.value.length != 0 &&
+        passwordInput.value.length != 0
+      ) {
+        fetch("http://localhost:3000/users")
+          .then((response) => response.json())
+          .then((data) => {
+            const existingUser = data.find(
+              (user) => user.email === registerData.email
+            );
+            if (existingUser) {
+              alert("Email already exists.");
+            } else {
+              fetch("http://localhost:3000/users", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(registerData),
+              })
+                .then((response) => response.json())
+                .then((data) => data);
+            }
+          });
+      }
+    }
+    clearData();
   }
 
   function clearData() {

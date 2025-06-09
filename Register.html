@@ -28,20 +28,19 @@
         <h1 class="text-center">Register</h1>
         <form class="d-flex flex-column justify-content-center">
             <div class="mb-3">
-                <label for="registerName" class="form-label">Username</label>
-                <div id="nameError"></div>
-                <input type="text" class="form-control" id="registerName" name="registerName" autocomplete="off">
+                <label for="Name" class="form-label">Username</label>
+                <span></span>
+                <input type="text" class="form-control" id="Name" name="Name" autocomplete="off">
             </div>
             <div class="mb-3">
-                <label for="registerEmail" class="form-label">Email address</label>
-                <div id="emailError"></div>
-                <input type="email" class="form-control" id="registerEmail" name="registerEmail" autocomplete="off">
+                <label for="Email" class="form-label">Email address</label>
+                <span></span>
+                <input type="email" class="form-control" id="Email" name="Email" autocomplete="off">
             </div>
             <div class="mb-3">
-                <label for="registerPassword" class="form-label">Password</label>
-                <div id="passwordError"></div>
-                <input type="password" class="form-control" id="registerPassword" name="registerPassword"
-                    autocomplete="off">
+                <label for="Password" class="form-label">Password</label>
+                <span></span>
+                <input type="password" class="form-control" id="Password" name="Password" autocomplete="off">
             </div>
             <button type="button" class="btn btn-dark" id="register-btn" onclick="register()">Register</button>
         </form>
