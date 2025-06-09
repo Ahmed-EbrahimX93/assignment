@@ -425,7 +425,28 @@ function register() {
               (user) => user.email === registerData.email
             );
             if (existingUser) {
-              alert("Email already exists.");
+              let timerInterval;
+              Swal.fire({
+                title: "Email already exists!",
+                html: "Please login in <b></b> milliseconds.",
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                  Swal.showLoading();
+                  const timer = Swal.getPopup().querySelector("b");
+                  timerInterval = setInterval(() => {
+                    timer.textContent = `${Swal.getTimerLeft()}`;
+                  }, 100);
+                },
+                willClose: () => {
+                  clearInterval(timerInterval);
+                },
+              }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                  console.log("I was closed by the timer");
+                }
+              });
             } else {
               fetch("http://localhost:3000/users", {
                 method: "POST",
@@ -436,12 +457,16 @@ function register() {
               })
                 .then((response) => response.json())
                 .then((data) => data);
-              alert("Registration successful!");
+              Swal.fire({
+                title: "Registration successful!",
+                icon: "success",
+                draggable: true,
+              });
             }
           });
         setTimeout(() => {
           window.location.href = "Login.html";
-        }, 1500);
+        }, 2000);
       }
       clearData();
     }
