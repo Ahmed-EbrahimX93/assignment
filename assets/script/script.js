@@ -380,73 +380,51 @@ function register() {
     } else if (passwordInput.value.length == 0) {
       passwordError.innerHTML = pError;
       passwordError.style.color = "red";
-    } else if(!passwordRegex.test(passwordInput.value)){passwordError.style.color = "red";
-      passwordError.innerHTML = "the password should be at least 8 chars";}
-    else {
+    } else if (!passwordRegex.test(passwordInput.value)) {
+      passwordError.style.color = "red";
+      passwordError.innerHTML = "the password should be at least 8 chars";
+    } else {
       nameError.style.display = "none";
       emailError.style.display = "none";
       passwordError.style.display = "none";
     }
   }
 
-  function dataCheck() {
-    if (nameInput.value.length != 0 && !userNameRegex.test(nameInput.value)) {
-      error = true;
-    }
-
-    if (emailInput.value.length != 0 && !emailRegex.test(emailInput.value)) {
-      emailError.style.color = "red";
-      emailError.innerHTML =
-        "the email should be at least 3 chars and contains gmail or yahoo";
-      error = true;
-    }
+  function pushRegisterData() {
+    let registerData = {
+      id: Date.now(),
+      name: nameInput.value,
+      email: emailInput.value,
+      password: passwordInput.value,
+    };
 
     if (
-      passwordInput.value.length != 0 &&
-      
+      nameInput.value.length != 0 &&
+      emailInput.value.length != 0 &&
+      passwordInput.value.length != 0
     ) {
-      passwordError.style.color = "red";
-      passwordError.innerHTML = "the password should be at least 8 chars";
-      error = true;
+      fetch("http://localhost:3000/users")
+        .then((response) => response.json())
+        .then((data) => {
+          const existingUser = data.find(
+            (user) => user.email === registerData.email
+          );
+          if (existingUser) {
+            alert("Email already exists.");
+          } else {
+            fetch("http://localhost:3000/users", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(registerData),
+            })
+              .then((response) => response.json())
+              .then((data) => data);
+          }
+        });
     }
   }
-
-
-    function pushRegisterData() {
-      let registerData = {
-        id: Date.now(),
-        name: nameInput.value,
-        email: emailInput.value,
-        password: passwordInput.value,
-      };
-
-      if (
-        nameInput.value.length != 0 &&
-        emailInput.value.length != 0 &&
-        passwordInput.value.length != 0
-      ) {
-        fetch("http://localhost:3000/users")
-          .then((response) => response.json())
-          .then((data) => {
-            const existingUser = data.find(
-              (user) => user.email === registerData.email
-            );
-            if (existingUser) {
-              alert("Email already exists.");
-            } else {
-              fetch("http://localhost:3000/users", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(registerData),
-              })
-                .then((response) => response.json())
-                .then((data) => data);
-            }
-          });
-      }
-    }
 
   function clearData() {
     inputs.forEach((input) => (input.value = ""));
