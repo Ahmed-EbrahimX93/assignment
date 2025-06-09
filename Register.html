@@ -4,11 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assignment/assets/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../assignment/assets/style/style.css">
     <title>Register</title>
 </head>
 
 <body>
-
+    <div class="container mt-5 mb-5">
+        <h1 class="text-center">Register</h1>
+        <form id="registerForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+    <script src="../assignment/assets/script/bootstrap.bundle.min.js"></script>
+    <script src="../assignment/assets/script/script.js"></script>
 </body>
 
 </html>

@@ -333,12 +333,22 @@ function spaDisplay() {
   }
 }
 
-navPlaceholder();
-footerPlaceholder();
-toTop();
+if (document.querySelector(".nav-placeholder")) {
+  navPlaceholder();
+}
+
+if (document.querySelector("#footer-placeholder")) {
+  footerPlaceholder();
+}
+
+if (document.querySelector(".top-btn")) {
+  toTop();
+}
+
 if (document.querySelector("#products-cards-display")) {
   productsFetch();
 }
+
 if (document.querySelector("#spa-display")) {
   spaDisplay();
 }
