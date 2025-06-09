@@ -44,11 +44,19 @@ body > nav > div > button {
   .login-btn {
     display: none !important;
   }
+
+  .contact-us-form {
+    width: 100% !important;
+  }
 }
 
 @media (min-width: 992px) {
   .login-btn-mobile {
     display: none !important;
+  }
+
+  .contact-us-form {
+    width: 50% !important;
   }
 }
 
