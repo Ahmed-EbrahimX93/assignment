@@ -350,7 +350,7 @@ function register() {
 
   registerBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    pushRegisterData();
+    errorDisplay();
   });
 
   function errorDisplay() {
@@ -388,40 +388,7 @@ function register() {
       error = true;
     }
 
-    // const nError = `<p>Please Enter your name</p>`;
-    // const eError = `<p>Please Enter your email</p>`;
-    // const pError = `<p>Please Enter your password</p>`;
-
-    // if (nameInput.value.length == 0) {
-    //   nameError.innerHTML = nError;
-    //   nameError.style.color = "red";
-    // } else if (!userNameRegex.test(nameInput.value)) {
-    //   nameError.style.color = "red";
-    //   nameError.innerHTML =
-    //     "the full name should start with uppercase and at least 3 chars";
-    // } else if (emailInput.value.length == 0) {
-    //   emailError.innerHTML = eError;
-    //   emailError.style.color = "red";
-    // } else if (!emailRegex.test(emailInput.value)) {
-    //   nameError.style.color = "red";
-    //   nameError.innerHTML =
-    //     "the email should be at least 3 chars and contains gmail or yahoo";
-    // } else if (passwordInput.value.length == 0) {
-    //   passwordError.innerHTML = pError;
-    //   passwordError.style.color = "red";
-    // } else if (!passwordRegex.test(passwordInput.value)) {
-    //   passwordError.style.color = "red";
-    //   passwordError.innerHTML = "the password should be at least 8 chars";
-    // } else {
-    //   nameError.style.display = "none";
-    //   emailError.style.display = "none";
-    //   passwordError.style.display = "none";
-    // }
-  }
-
-  if (!error) {
-    errorDisplay();
-    function pushRegisterData() {
+    if (!error) {
       let registerData = {
         id: Date.now(),
         name: nameInput.value,
@@ -455,8 +422,8 @@ function register() {
             }
           });
       }
+      clearData();
     }
-    clearData();
   }
 
   function clearData() {

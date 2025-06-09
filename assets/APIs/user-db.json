@@ -2,9 +2,9 @@
   "users": [
     {
       "id": "1",
-      "username": "Leanne Graham",
-      "email": "LmK2M@example.com",
-      "password": "password123",
+      "username": "Admin",
+      "email": "admin@gmail.com",
+      "password": "123456789",
       "role": "admin"
     },
     {
