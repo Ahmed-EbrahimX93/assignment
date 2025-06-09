@@ -332,6 +332,23 @@ function spaDisplay() {
   }
 }
 
+function addToCart() {
+  const addToCartBtn = document.querySelector(".add-to-cart-btn");
+  const spinner = document.querySelector(".spinner-border");
+  addToCartBtn.addEventListener("click", () => {
+    addToCartBtn.classList.add("d-none");
+    spinner.classList.remove("d-none");
+    setTimeout(() => {
+      spinner.classList.add("d-none");
+      addToCartBtn.classList.remove("d-none");
+      addToCartBtn.innerHTML = `<i class="bi bi-check-circle"></i> Added to Cart`;
+    }, 1000);
+    setTimeout(() => {
+      addToCartBtn.innerHTML = `<i class="bi bi-cart-plus"></i> Add to Cart`;
+    }, 2000);
+  });
+}
+
 function register() {
   const inputs = document.querySelectorAll("input");
   const registerBtn = document.getElementById("register-btn");
@@ -419,8 +436,12 @@ function register() {
               })
                 .then((response) => response.json())
                 .then((data) => data);
+              alert("Registration successful!");
             }
           });
+        setTimeout(() => {
+          window.location.href = "Login.html";
+        }, 1500);
       }
       clearData();
     }
