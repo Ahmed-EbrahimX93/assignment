@@ -411,7 +411,7 @@ function register() {
         emailInput.value.length != 0 &&
         passwordInput.value.length != 0
       ) {
-        fetch("http://localhost:3000/users")
+        fetch("http://localhost:5000/users")
           .then((response) => response.json())
           .then((data) => {
             const existingUser = data.find(
@@ -441,7 +441,7 @@ function register() {
                 }
               });
             } else {
-              fetch("http://localhost:3000/users", {
+              fetch("http://localhost:5000/users", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -472,14 +472,12 @@ function register() {
 
 function login() {
   const loginBtn = document.getElementById("login-btn");
-  const nameInput = document.getElementById("Name");
   const emailInput = document.getElementById("Email");
   const passwordInput = document.getElementById("Password");
 
   loginBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    const userName = nameInput.value;
     const userEmail = emailInput.value;
     const userPassword = passwordInput.value;
 
@@ -499,7 +497,7 @@ function login() {
               window.location.href = "Dashboard.html";
             }, 2000);
           } else {
-            if (user.name === userName && user.password === userPassword) {
+            if (user.email === userEmail && user.password === userPassword) {
               localStorage.setItem("isLoggedIn", true);
               localStorage.setItem("userName", user.name);
               Swal.fire({

@@ -6,6 +6,12 @@
       "email": "admin@gmail.com",
       "password": "123456789",
       "role": "admin"
+    },
+    {
+      "id": 1749684978167,
+      "name": "Ahmed Ebrahim",
+      "email": "ahmed@gmail.com",
+      "password": "123456789"
     }
   ]
 }
