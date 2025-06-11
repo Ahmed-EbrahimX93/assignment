@@ -1,10 +1,16 @@
 :root {
-  --primary-color: #bf5027; /* Orange */
-  --secondary-color: #f1f1f1; /* Light Gray */
-  --headerText-color: #ffffff; /* White */
-  --footer-color: #343a40; /* Dark Gray */
-  --footer-text-color: #f1f1f1; /* White */
-  --text-color: #333; /* Dark Gray */
+  --primary-color: #bf5027;
+  /* Orange */
+  --secondary-color: #f1f1f1;
+  /* Light Gray */
+  --headerText-color: #ffffff;
+  /* White */
+  --footer-color: #343a40;
+  /* Dark Gray */
+  --footer-text-color: #f1f1f1;
+  /* White */
+  --text-color: #333;
+  /* Dark Gray */
   --font-family: "Tajawal", Helvetica, Arial, sans-serif;
 }
 

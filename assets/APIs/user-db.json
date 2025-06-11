@@ -2,22 +2,10 @@
   "users": [
     {
       "id": "1",
-      "username": "Admin",
+      "username": "admin",
       "email": "admin@gmail.com",
       "password": "123456789",
       "role": "admin"
-    },
-    {
-      "id": 1749509934177,
-      "name": "Ahmed",
-      "email": "ahmed@gmail.com",
-      "password": "123456789"
-    },
-    {
-      "id": 1749510970785,
-      "name": "Ahmed",
-      "email": "ebrahim@gmail.com",
-      "password": "123456789"
     }
   ]
 }

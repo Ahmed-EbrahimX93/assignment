@@ -112,8 +112,7 @@ function productsFetch() {
           .slice(0, 10)
           .join(" ")}...</p>
         </p>
-        <a href="single-product.html?${
-          data[i].id
+        <a href="single-product.html?${data[i].id
         }" class="btn btn-dark" id="spa-btn">Buy Now</a>
         </div>
         </div>
@@ -357,13 +356,12 @@ function register() {
   const nameInput = document.getElementById("Name");
   const emailInput = document.getElementById("Email");
   const passwordInput = document.getElementById("Password");
-  const userNameRegex = /^[A-Z]{1}[a-z]{3,}$/;
   const emailRegex = /^[a-z]{3,}@(gmail||yahoo).com$/;
   const passwordRegex = /^[0-9]{8,}$/;
   let error = false;
   const usersData =
     [] ||
-    fetch("http://localhost:3000/users")
+    fetch("http://localhost:5000/users")
       .then((response) => response.json())
       .then((data) => (usersData = data));
 
@@ -381,13 +379,6 @@ function register() {
         ].previousElementSibling.innerHTML = `${inputs[i].name} is Required`;
         error = true;
       }
-    }
-
-    if (nameInput.value.length != 0 && !userNameRegex.test(nameInput.value)) {
-      nameInput.previousElementSibling.style.color = "red";
-      nameInput.previousElementSibling.innerHTML =
-        "the full name should start with uppercase and at least 3 chars";
-      error = true;
     }
 
     if (emailInput.value.length != 0 && !emailRegex.test(emailInput.value)) {
@@ -492,13 +483,13 @@ function login() {
     const userEmail = emailInput.value;
     const userPassword = passwordInput.value;
 
-    fetch("http://localhost:3000/users")
+    fetch("http://localhost:5000/users")
       .then((response) => response.json())
       .then((data) => {
         const user = data.find((user) => user.email === userEmail);
 
         if (user) {
-          if (user.email === "admin@gmail.com") {
+          if (user.email === "admin@gmail.com" && user.password === "123456789") {
             Swal.fire({
               title: "Welcom Mr.Admin!",
               icon: "success",
