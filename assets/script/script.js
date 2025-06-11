@@ -43,11 +43,13 @@ function navPlaceholder() {
             <div class="login-btn-mobile">
               <a class="btn btn-outline-light" href="Login.html">Login</a>
             </div>
+            <div class="logged-in-user"><div>
           </ul>
         </div>
         <div class="login-btn">
           <a class="btn btn-outline-light" href="Login.html">Login</a>
         </div>
+        <div class="logged-in-user"><div>
       </div>
     </nav>
     `;
@@ -475,6 +477,78 @@ function register() {
   function clearData() {
     inputs.forEach((input) => (input.value = ""));
   }
+}
+
+function login() {
+  const loginBtn = document.getElementById("login-btn");
+  const nameInput = document.getElementById("Name");
+  const emailInput = document.getElementById("Email");
+  const passwordInput = document.getElementById("Password");
+
+  loginBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const userName = nameInput.value;
+    const userEmail = emailInput.value;
+    const userPassword = passwordInput.value;
+
+    fetch("http://localhost:3000/users")
+      .then((response) => response.json())
+      .then((data) => {
+        const user = data.find((user) => user.email === userEmail);
+
+        if (user) {
+          if (user.email === "admin@gmail.com") {
+            Swal.fire({
+              title: "Welcom Mr.Admin!",
+              icon: "success",
+              draggable: true,
+            });
+            setTimeout(() => {
+              window.location.href = "Dashboard.html";
+            }, 2000);
+          } else {
+            if (user.name === userName && user.password === userPassword) {
+              localStorage.setItem("isLoggedIn", true);
+              localStorage.setItem("userName", user.name);
+              Swal.fire({
+                title: "Login successful!",
+                icon: "success",
+                draggable: true,
+              });
+              // setTimeout(() => {
+              //   window.location.href = "Home.html";
+              // }, 2000);
+              // updateNavbar();
+            } else {
+              Swal.fire({
+                title: "Invalid credentials!",
+                text: "Please check your credentials.",
+                icon: "error",
+                draggable: true,
+              });
+            }
+          }
+        } else {
+          Swal.fire({
+            title: "User not found!",
+            text: "Please register first.",
+            icon: "warning",
+            draggable: true,
+          });
+        }
+      });
+    // function updateNavbar() {
+    //   const loggedInUser = document.querySelector(".logged-in-user");
+    //   const loginBtn = document.querySelector(".login-btn");
+    //   const userName = localStorage.getItem("userName");
+
+    //   if (userName) {
+    //     loggedInUser.innerHTML = `<span class="text-white">Welcome, ${userName}!</span>`;
+    //     loginBtn.style.display = "none";
+    //   }
+    // }
+  });
 }
 
 if (document.querySelector(".nav-placeholder")) {
