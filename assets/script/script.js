@@ -500,7 +500,10 @@ function login() {
             if (user.email === userEmail && user.password === userPassword) {
               localStorage.setItem("isLoggedIn", JSON.stringify(true));
               localStorage.setItem("userName", JSON.stringify(user.name));
-              updateNavbar();
+
+              document.querySelector(".logged-in-user").innerHTML = `<span class="text-white">Welcome, ${user.name}!</span>`;
+              document.querySelector(".login-btn").style.display = "none";
+
               Swal.fire({
                 title: "Login successful!",
                 icon: "success",
@@ -527,16 +530,6 @@ function login() {
           });
         }
       });
-    function updateNavbar() {
-      const loggedInUser = document.querySelector(".logged-in-user");
-      const loginBtn = document.querySelector(".login-btn");
-      const userName = JSON.parse(localStorage.getItem("userName"));
-
-      if (userName) {
-        loggedInUser.innerHTML = `<span class="text-white">Welcome, ${userName}!</span>`;
-        loginBtn.style.display = "none";
-      }
-    }
   });
 }
 
