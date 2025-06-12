@@ -1,4 +1,5 @@
-:root {
+:root
+{
   --primary-color: #bf5027;
   /* Orange */
   --secondary-color: #f1f1f1;
@@ -14,11 +15,13 @@
   --font-family: "Tajawal", Helvetica, Arial, sans-serif;
 }
 
-html {
+html
+{
   scroll-behavior: smooth;
 }
 
-body {
+body
+{
   font-family: var(--font-family);
   color: var(--text-color);
   margin: 0;
@@ -26,11 +29,13 @@ body {
   box-sizing: border-box;
 }
 
-.navbar-color {
+.navbar-color
+{
   background-color: var(--primary-color) !important;
 }
 
-.navbar-color.scrolled {
+.navbar-color.scrolled
+{
   position: fixed;
   top: 0;
   width: 100%;
@@ -39,46 +44,63 @@ body {
   background-color: black !important;
 }
 
-body > nav > div > button {
+body > nav > div > button
+{
   border-color: var(--headerText-color) !important;
 }
 
-#navbarSupportedContent {
+#navbarSupportedContent
+{
   flex-grow: 0 !important;
 }
 
-@media (max-width: 991.98px) {
-  .login-btn {
+@media (max-width: 991.98px)
+{
+
+  .login-btn,
+  .logged-in-user,
+  .signout-btn
+  {
     display: none !important;
   }
 
   .contact-us-form,
   .cuFeedback,
-  .registerForm {
+  .registerForm
+  {
     width: 100% !important;
   }
 }
 
-@media (min-width: 992px) {
-  .login-btn-mobile {
+@media (min-width: 992px)
+{
+
+  .login-btn-mobile,
+  .logged-in-user-mobile,
+  .signout-btn-mobile
+  {
     display: none !important;
   }
 
   .contact-us-form,
-  .cuFeedback {
+  .cuFeedback
+  {
     width: 50% !important;
   }
 
-  .registerForm {
+  .registerForm
+  {
     width: 30% !important;
   }
 }
 
-#navbarSupportedContent > ul > li > a {
+#navbarSupportedContent > ul > li > a
+{
   color: var(--headerText-color) !important;
 }
 
-.to-top {
+.to-top
+{
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -102,20 +124,24 @@ body > nav > div > button {
   transform: scale(0);
 }
 
-.to-top:hover {
+.to-top:hover
+{
   bottom: 35px;
 }
 
-.to-top.show {
+.to-top.show
+{
   transform: scale(1);
 }
 
-.product-image {
+.product-image
+{
   max-height: 400px;
   object-fit: cover;
 }
 
-.thumbnail {
+.thumbnail
+{
   width: 80px;
   height: 80px;
   object-fit: cover;
@@ -125,15 +151,30 @@ body > nav > div > button {
 }
 
 .thumbnail:hover,
-.thumbnail.active {
+.thumbnail.active
+{
   opacity: 1;
 }
 
-#footer-placeholder {
+#footer-placeholder
+{
   background-color: var(--footer-color);
   color: var(--footer-text-color);
 }
 
-.social-icons a {
+.social-icons a
+{
   font-size: 1.25rem;
+}
+
+.logged-in-user,
+.logged-in-user-mobile
+{
+  color: var(--headerText-color);
+}
+
+.logged-in-user-mobile,
+.signout-btn-mobile
+{
+  padding: .5rem 0 .5rem 0;
 }

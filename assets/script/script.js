@@ -1,57 +1,55 @@
 function navPlaceholder() {
   const nav = `
   <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-color">
-      <div class="container text-center">
-        <div class="navbar-logo">
-          <a class="navbar-brand" href="home.html">
-            <img
-              src="../assignment/assets/images/logo.svg"
-              alt="Logo"
-              width="100%"
-              height="auto"
-              class="d-inline-block align-text-top"
-            />
-          </a>
-        </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-0 mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="Home.html"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Products.html">Our Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="About.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Contact-Us.html">Contact us</a>
-            </li>
-            <div class="login-btn-mobile">
-              <a class="btn btn-outline-light" href="Login.html">Login</a>
-            </div>
-            <div class="logged-in-user"><div>
-          </ul>
-        </div>
-        <div class="logged-in-user"><div>
-        <div class="login-btn">
-          <a class="btn btn-outline-light" href="Login.html">Login</a>
-        </div>
+    <div class="container text-center">
+      <div class="navbar-logo">
+        <a class="navbar-brand" href="home.html">
+          <img src="../assignment/assets/images/logo.svg" alt="Logo" width="100%" height="auto"
+            class="d-inline-block align-text-top" />
+        </a>
       </div>
-    </nav>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Products.html">Our Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Contact-Us.html">Contact us</a>
+          </li>
+          ${JSON.parse(localStorage.getItem("userName")) ?
+      `
+          <div class="signout-btn-mobile">
+            <a class="btn btn-outline-light" onclick="signOut()">Signout</a>
+          </div>
+          <div class="logged-in-user-mobile py">${JSON.parse(localStorage.getItem("userName"))}<div>
+              `
+      : `
+              <div class="login-btn-mobile">
+                <a class="btn btn-outline-light" href="Login.html">Login</a>
+              </div>`}
+        </ul>
+      </div>
+      ${JSON.parse(localStorage.getItem("userName")) ?
+      `<div class="logged-in-user">${JSON.parse(localStorage.getItem("userName"))}<div>
+          <div class="signout-btn">
+            <a class="btn btn-outline-light" onclick="signOut()">Signout</a>
+          </div>`
+      : `
+          <div class="login-btn">
+            <a class="btn btn-outline-light" href="Login.html">Login</a>
+          </div>`}
+        </div>
+  </nav>
     `;
   document.querySelector(".nav-placeholder").innerHTML = nav;
 }
@@ -76,12 +74,12 @@ document.addEventListener("scroll", () => {
 
 function toTop() {
   const goTopBTN = `
-        <a href="#">
-        <div class="to-top">
-          <i class="fa-solid fa-arrow-up"></i>
-        </div>
-        </a>
-        `;
+    <a href = "#" >
+      <div class="to-top">
+        <i class="fa-solid fa-arrow-up"></i>
+      </div>
+        </a >
+    `;
   document.querySelector(".top-btn").innerHTML = goTopBTN;
 }
 
@@ -95,28 +93,24 @@ function productsFetch() {
     let m = ``;
     for (let i = 0; i < data.length; i++) {
       m += `
-        <div class="col">
-        <div class="card">
-        <img
-        src="${data[i].thumbnail ? data[i].thumbnail : "img2.jpg"}"
-        class="card-img-top"
-        alt="img-1"
-        />
-        <div class="card-body">
-        <h5 class="card-title">${data[i].title
+            <div class="col">
+          <div class="card">
+            <img src="${data[i].thumbnail ? data[i].thumbnail : " img2.jpg"}" class="card-img-top" alt="img-1" />
+            <div class="card-body">
+              <h5 class="card-title">${data[i].title
           .split(" ")
           .slice(0, 3)
           .join(" ")}...</h5>
-        <p class="card-text">${data[i].description
+              <p class="card-text">${data[i].description
           .split(" ")
           .slice(0, 10)
           .join(" ")}...</p>
-        </p>
-        <a href="single-product.html?${data[i].id
+              </p>
+              <a href="single-product.html?${data[i].id
         }" class="btn btn-dark" id="spa-btn">Buy Now</a>
-        </div>
-        </div>
-        </div>`;
+            </div>
+          </div>
+        </div> `;
     }
     document.querySelector("#products-cards-display").innerHTML = m;
   }
@@ -130,7 +124,7 @@ function loadMoreProducts() {
 
 function footerPlaceholder() {
   const footer = `
-      <div class="container">
+    <div class="container" >
         <div class="row">
           <div class="col-md-4 mb-3">
             <h5>About Us</h5>
@@ -191,7 +185,7 @@ function footerPlaceholder() {
             </p>
           </div>
         </div>
-      </div>`;
+      </div > `;
   document.querySelector("#footer-placeholder").innerHTML = footer;
 }
 
@@ -230,9 +224,9 @@ function collectData() {
     const nameError = document.getElementById("nameError");
     const emailError = document.getElementById("emailError");
     const messageError = document.getElementById("messageError");
-    const nError = `<p>Please Enter your name</p>`;
-    const eError = `<p>Please Enter your email</p>`;
-    const mError = `<p>Please Enter your message</p>`;
+    const nError = `< p > Please Enter your name</p > `;
+    const eError = `< p > Please Enter your email</p > `;
+    const mError = `< p > Please Enter your message</p > `;
     if (nameInput.value.length == 0) {
       nameError.innerHTML = nError;
       nameError.style.color = "red";
@@ -259,7 +253,7 @@ function collectData() {
     let output = ``;
     for (let i = 0; i < usersFeedback.length; i++) {
       output = `
-      <h2 class="text-center">Feedbacks</h2>
+    < h2 class="text-center" > Feedbacks</h2 >
       <div class="feedback-list" id="feedback-list">
         <div class="feedback-item border rounded-4 p-3 m-3">
           <div class="feedback">
@@ -270,12 +264,12 @@ function collectData() {
           <button class="btn btn-outline-danger" type="button" id="delete-btn-${i}">Delete</button>
         </div>
       </div>
-      `;
+  `;
     }
     display.innerHTML = output;
 
     for (let i = 0; i < usersFeedback.length; i++) {
-      const deleteBtn = document.getElementById(`delete-btn-${i}`);
+      const deleteBtn = document.getElementById(`delete -btn - ${i} `);
       deleteBtn.addEventListener("click", () => deleteData(i));
     }
   }
@@ -500,10 +494,6 @@ function login() {
             if (user.email === userEmail && user.password === userPassword) {
               localStorage.setItem("isLoggedIn", JSON.stringify(true));
               localStorage.setItem("userName", JSON.stringify(user.name));
-
-              document.querySelector(".logged-in-user").innerHTML = `<span class="text-white">Welcome, ${user.name}!</span>`;
-              document.querySelector(".login-btn").style.display = "none";
-
               Swal.fire({
                 title: "Login successful!",
                 icon: "success",
@@ -531,6 +521,12 @@ function login() {
         }
       });
   });
+}
+
+function signOut() {
+  localStorage.removeItem("userName");
+  localStorage.removeItem("isLoggedIn");
+  window.location.href = "Home.html";
 }
 
 if (document.querySelector(".nav-placeholder")) {
