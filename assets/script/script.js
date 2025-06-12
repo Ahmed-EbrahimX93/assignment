@@ -531,6 +531,63 @@ function signOut() {
   window.location.href = "Home.html";
 }
 
+function dashboardDisplay() {
+  fetch("http://localhost:5000/users")
+    .then((response) => response.json())
+    .then((user) => { usersDisplay(user); });
+
+  function usersDisplay(users) {
+    const tableBody = document.querySelector("tbody");
+    users.forEach((user, i) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td class="t-userName">${user.name}</td>
+        <td class="t-email">${user.email}</td>
+        <td><button onclick="deleteUser(${i})" class="btn btn-danger">
+        <i class="fa-solid fa-trash-can pe-2"></i>
+        </button></td>
+        <td><button onclick="editUser(${i})" class="editeBtn btn btn-info">
+        <i class="fa-solid fa-pen-to-square pe-2"></i>
+        </button>
+        <button onclick="saveBookmark(${i})" style="display: none;" class="saveBtn btn btn-primary"><i
+              class="fa-solid fa-pen-to-square pe-2"></i>Save</button>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+}
+
+function editUser(i) {
+  const tableBody = document.querySelector("table tbody");
+  const row = tableBody.rows[i];
+  const editBtn = row.querySelector(".editeBtn");
+  const saveBtn = row.querySelector(".saveBtn");
+
+  saveBtn.style.display = "block";
+  editBtn.style.display = "none";
+
+  const userName = row.querySelector(".t-userName");
+  const userEmail = row.querySelector(".t-email");
+
+  userName.innerHTML = `<input type="text" class="form-control" value="${userName.textContent}">`;
+  userEmail.innerHTML = `<input type="text" class="form-control" value="${userEmail.textContent}">`;
+}
+
+function deleteUser(i) {
+  const users = fetch("http://localhost:5000/users")
+    .then((response) => response.json())
+    .then((users) => {
+      for (let j = 0; j < users.length; j++) {
+        fetch("http://localhost:5000/users?${users[i].id}", {
+          method: "DELETE",
+        });
+        const tableBody = document.querySelector("table tbody");
+        tableBody.deleteRow(i);
+      }
+    });
+}
+
 if (document.querySelector(".nav-placeholder")) {
   navPlaceholder();
 }
@@ -549,4 +606,8 @@ if (document.querySelector("#products-cards-display")) {
 
 if (document.querySelector("#spa-display")) {
   spaDisplay();
+}
+
+if (document.querySelector(".dashboard-display")) {
+  dashboardDisplay();
 }
