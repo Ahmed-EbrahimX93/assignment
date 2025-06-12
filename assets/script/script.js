@@ -46,10 +46,10 @@ function navPlaceholder() {
             <div class="logged-in-user"><div>
           </ul>
         </div>
+        <div class="logged-in-user"><div>
         <div class="login-btn">
           <a class="btn btn-outline-light" href="Login.html">Login</a>
         </div>
-        <div class="logged-in-user"><div>
       </div>
     </nav>
     `;
@@ -498,17 +498,17 @@ function login() {
             }, 2000);
           } else {
             if (user.email === userEmail && user.password === userPassword) {
-              localStorage.setItem("isLoggedIn", true);
-              localStorage.setItem("userName", user.name);
+              localStorage.setItem("isLoggedIn", JSON.stringify(true));
+              localStorage.setItem("userName", JSON.stringify(user.name));
+              updateNavbar();
               Swal.fire({
                 title: "Login successful!",
                 icon: "success",
                 draggable: true,
               });
-              // setTimeout(() => {
-              //   window.location.href = "Home.html";
-              // }, 2000);
-              // updateNavbar();
+              setTimeout(() => {
+                window.location.href = "Home.html";
+              }, 2000);
             } else {
               Swal.fire({
                 title: "Invalid credentials!",
@@ -527,16 +527,16 @@ function login() {
           });
         }
       });
-    // function updateNavbar() {
-    //   const loggedInUser = document.querySelector(".logged-in-user");
-    //   const loginBtn = document.querySelector(".login-btn");
-    //   const userName = localStorage.getItem("userName");
+    function updateNavbar() {
+      const loggedInUser = document.querySelector(".logged-in-user");
+      const loginBtn = document.querySelector(".login-btn");
+      const userName = JSON.parse(localStorage.getItem("userName"));
 
-    //   if (userName) {
-    //     loggedInUser.innerHTML = `<span class="text-white">Welcome, ${userName}!</span>`;
-    //     loginBtn.style.display = "none";
-    //   }
-    // }
+      if (userName) {
+        loggedInUser.innerHTML = `<span class="text-white">Welcome, ${userName}!</span>`;
+        loginBtn.style.display = "none";
+      }
+    }
   });
 }
 
