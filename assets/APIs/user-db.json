@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "1",
-      "username": "admin",
+      "name": "admin",
       "email": "admin@gmail.com",
       "password": "123456789",
       "role": "admin"

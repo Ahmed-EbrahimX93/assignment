@@ -482,6 +482,8 @@ function login() {
 
         if (user) {
           if (user.email === "admin@gmail.com" && user.password === "123456789") {
+            localStorage.setItem("isLoggedIn", JSON.stringify(true));
+            localStorage.setItem("userName", JSON.stringify(user.name));
             Swal.fire({
               title: "Welcom Mr.Admin!",
               icon: "success",
