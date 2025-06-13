@@ -26,28 +26,36 @@ function navPlaceholder() {
           <li class="nav-item">
             <a class="nav-link" href="Contact-Us.html">Contact us</a>
           </li>
-          ${JSON.parse(localStorage.getItem("userName")) ?
-      `
+          ${
+            JSON.parse(localStorage.getItem("userName"))
+              ? `
           <div class="signout-btn-mobile">
             <a class="btn btn-outline-light" onclick="signOut()">Signout</a>
           </div>
-          <div class="logged-in-user-mobile py">${JSON.parse(localStorage.getItem("userName"))}<div>
+          <div class="logged-in-user-mobile py">${JSON.parse(
+            localStorage.getItem("userName")
+          )}<div>
               `
-      : `
+              : `
               <div class="login-btn-mobile">
                 <a class="btn btn-outline-light" href="Login.html">Login</a>
-              </div>`}
+              </div>`
+          }
         </ul>
       </div>
-      ${JSON.parse(localStorage.getItem("userName")) ?
-      `<div class="logged-in-user">${JSON.parse(localStorage.getItem("userName"))}<div>
+      ${
+        JSON.parse(localStorage.getItem("userName"))
+          ? `<div class="logged-in-user">${JSON.parse(
+              localStorage.getItem("userName")
+            )}<div>
           <div class="signout-btn">
             <a class="btn btn-outline-light" onclick="signOut()">Signout</a>
           </div>`
-      : `
+          : `
           <div class="login-btn">
             <a class="btn btn-outline-light" href="Login.html">Login</a>
-          </div>`}
+          </div>`
+      }
         </div>
   </nav>
     `;
@@ -95,19 +103,22 @@ function productsFetch() {
       m += `
             <div class="col">
           <div class="card">
-            <img src="${data[i].thumbnail ? data[i].thumbnail : " img2.jpg"}" class="card-img-top" alt="img-1" />
+            <img src="${
+              data[i].thumbnail ? data[i].thumbnail : " img2.jpg"
+            }" class="card-img-top" alt="img-1" />
             <div class="card-body">
               <h5 class="card-title">${data[i].title
-          .split(" ")
-          .slice(0, 3)
-          .join(" ")}...</h5>
+                .split(" ")
+                .slice(0, 3)
+                .join(" ")}...</h5>
               <p class="card-text">${data[i].description
-          .split(" ")
-          .slice(0, 10)
-          .join(" ")}...</p>
+                .split(" ")
+                .slice(0, 10)
+                .join(" ")}...</p>
               </p>
-              <a href="single-product.html?${data[i].id
-        }" class="btn btn-dark" id="spa-btn">Buy Now</a>
+              <a href="single-product.html?${
+                data[i].id
+              }" class="btn btn-dark" id="spa-btn">Buy Now</a>
             </div>
           </div>
         </div> `;
@@ -481,7 +492,10 @@ function login() {
         const user = data.find((user) => user.email === userEmail);
 
         if (user) {
-          if (user.email === "admin@gmail.com" && user.password === "123456789") {
+          if (
+            user.email === "admin@gmail.com" &&
+            user.password === "123456789"
+          ) {
             localStorage.setItem("isLoggedIn", JSON.stringify(true));
             localStorage.setItem("userName", JSON.stringify(user.name));
             Swal.fire({
@@ -531,61 +545,115 @@ function signOut() {
   window.location.href = "Home.html";
 }
 
-function dashboardDisplay() {
-  fetch("http://localhost:5000/users")
-    .then((response) => response.json())
-    .then((user) => { usersDisplay(user); });
+function addProduct() {
+  const inputs = document.querySelectorAll("input");
+  const addBtn = document.getElementById("add-p-btn");
+  const pName = document.getElementById("product-name");
+  const pDes = document.getElementById("product-description");
+  const pPrice = document.getElementById("product-price");
+  const pdPrice = document.getElementById("product-discount");
+  const pSKU = document.getElementById("product-sku");
+  const pImage = document.getElementById("product-image");
+  let error = false;
+  const productsData =
+    [] ||
+    fetch("http://localhost:3000/products")
+      .then((response) => response.json())
+      .then((product) => (productsData = product));
 
-  function usersDisplay(users) {
-    const tableBody = document.querySelector("tbody");
-    users.forEach((user, i) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td class="t-userName">${user.name}</td>
-        <td class="t-email">${user.email}</td>
-        <td><button onclick="deleteUser(${i})" class="btn btn-danger">
-        <i class="fa-solid fa-trash-can pe-2"></i>
-        </button></td>
-        <td><button onclick="editUser(${i})" class="editeBtn btn btn-info">
-        <i class="fa-solid fa-pen-to-square pe-2"></i>
-        </button>
-        <button onclick="saveBookmark(${i})" style="display: none;" class="saveBtn btn btn-primary"><i
-              class="fa-solid fa-pen-to-square pe-2"></i>Save</button>
-        </td>
-      `;
-      tableBody.appendChild(row);
-    });
+  addBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    errorDisplay();
+  });
+
+  function errorDisplay() {
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].value.length == 0) {
+        inputs[i].previousElementSibling.style.color = "red";
+        inputs[
+          i
+        ].previousElementSibling.innerHTML = `${inputs[i].name} is Required`;
+        error = true;
+      }
+    }
+
+    if (!error) {
+      let productData = {
+        id: Date.now(),
+        title: pName.value,
+        description: pDes.value,
+        price: pPrice.value,
+        discountPercentage: pdPrice.value,
+        sku: pSKU.value,
+        images: pImage.value,
+        thumbnail: pImage.value,
+      };
+
+      if (
+        pName.value.length != 0 &&
+        pDes.value.length != 0 &&
+        pPrice.value.length != 0 &&
+        pdPrice.value.length != 0 &&
+        pSKU.value.length != 0 &&
+        pImage.value.length != 0
+      ) {
+        fetch("http://localhost:3000/products")
+          .then((response) => response.json())
+          .then((data) => {
+            const existingProduct = data.find(
+              (product) => product.sku === productData.sku
+            );
+            if (existingProduct) {
+              Swal.fire("Product already exists!");
+            } else {
+              fetch("http://localhost:3000/products", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(productData),
+              })
+                .then((response) => response.json())
+                .then((product) => product);
+              Swal.fire("Added Successfully!");
+            }
+          });
+      }
+      clearData();
+    }
+  }
+
+  function clearData() {
+    inputs.forEach((input) => (input.value = ""));
   }
 }
 
-function editUser(i) {
-  const tableBody = document.querySelector("table tbody");
-  const row = tableBody.rows[i];
-  const editBtn = row.querySelector(".editeBtn");
-  const saveBtn = row.querySelector(".saveBtn");
-
-  saveBtn.style.display = "block";
-  editBtn.style.display = "none";
-
-  const userName = row.querySelector(".t-userName");
-  const userEmail = row.querySelector(".t-email");
-
-  userName.innerHTML = `<input type="text" class="form-control" value="${userName.textContent}">`;
-  userEmail.innerHTML = `<input type="text" class="form-control" value="${userEmail.textContent}">`;
-}
-
-function deleteUser(i) {
-  const users = fetch("http://localhost:5000/users")
+function dashboardDisplay() {
+  fetch("http://localhost:3000/products")
     .then((response) => response.json())
-    .then((users) => {
-      for (let j = 0; j < users.length; j++) {
-        fetch("http://localhost:5000/users?${users[i].id}", {
-          method: "DELETE",
-        });
-        const tableBody = document.querySelector("table tbody");
-        tableBody.deleteRow(i);
-      }
+    .then((data) => {
+      displayData(data);
     });
+  function displayData(data) {
+    let m = ``;
+    for (let i = 0; i < data.length; i++) {
+      m += `
+            <div class="col">
+          <div class="card">
+            <img src="${
+              data[i].thumbnail ? data[i].thumbnail : " img2.jpg"
+            }" class="card-img-top" alt="img-1" />
+            <div class="card-body">
+              <h5 class="card-title">${data[i].title}</h5>
+              <p class="card-text">${data[i].description}</p>
+              </p>
+            </div>
+          </div>
+        </div>
+        `;
+    }
+    document.querySelector("#products-cards-display").innerHTML = m;
+  }
 }
 
 if (document.querySelector(".nav-placeholder")) {
