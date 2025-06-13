@@ -243,9 +243,9 @@ function collectData() {
     const nameError = document.getElementById("nameError");
     const emailError = document.getElementById("emailError");
     const messageError = document.getElementById("messageError");
-    const nError = `< p > Please Enter your name</p > `;
-    const eError = `< p > Please Enter your email</p > `;
-    const mError = `< p > Please Enter your message</p > `;
+    const nError = `<p> Please Enter your name</p> `;
+    const eError = `<p> Please Enter your email</p> `;
+    const mError = `<p> Please Enter your message</p> `;
     if (nameInput.value.length == 0) {
       nameError.innerHTML = nError;
       nameError.style.color = "red";
@@ -272,7 +272,7 @@ function collectData() {
     let output = ``;
     for (let i = 0; i < usersFeedback.length; i++) {
       output = `
-    < h2 class="text-center" > Feedbacks</h2 >
+    <h2 class="text-center"> Feedbacks</h2 >
       <div class="feedback-list" id="feedback-list">
         <div class="feedback-item border rounded-4 p-3 m-3">
           <div class="feedback">
@@ -288,7 +288,7 @@ function collectData() {
     display.innerHTML = output;
 
     for (let i = 0; i < usersFeedback.length; i++) {
-      const deleteBtn = document.getElementById(`delete -btn - ${i} `);
+      const deleteBtn = document.getElementById(`delete-btn-${i}`);
       deleteBtn.addEventListener("click", () => deleteData(i));
     }
   }
