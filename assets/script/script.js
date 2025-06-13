@@ -631,8 +631,8 @@ function addProduct() {
 function dashboardDisplay() {
   fetch("http://localhost:3000/products")
     .then((response) => response.json())
-    .then((data) => {
-      displayData(data);
+    .then((product) => {
+      displayData(product);
     });
   function displayData(data) {
     let m = ``;

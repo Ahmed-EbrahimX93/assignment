@@ -55,12 +55,32 @@
       "thumbnail": "https://cdn.dummyjson.com/product-images/fragrances/calvin-klein-ck-one/thumbnail.webp"
     },
     {
-      "id": 1749845466077,
+      "id": "1749845466077",
       "title": "product1",
       "description": "product1",
       "price": "123",
       "discountPercentage": "12",
       "sku": "sku-1",
+      "thumbnail": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg"
+    },
+    {
+      "id": 1749846402272,
+      "title": "product2",
+      "description": "product2",
+      "price": "159",
+      "discountPercentage": "158",
+      "sku": "sku-123456",
+      "images": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg",
+      "thumbnail": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg"
+    },
+    {
+      "id": 1749846545548,
+      "title": "product3",
+      "description": "product3product3product3product3product3",
+      "price": "156",
+      "discountPercentage": "155",
+      "sku": "sku-154",
+      "images": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg",
       "thumbnail": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg"
     }
   ]
