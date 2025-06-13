@@ -27,6 +27,14 @@ function navPlaceholder() {
             <a class="nav-link" href="Contact-Us.html">Contact us</a>
           </li>
           ${
+            JSON.parse(localStorage.getItem("role"))
+              ? `<li class="nav-item">
+            <a class="nav-link" href="Dashboard.html">Dashboard</a>
+          </li>`
+              : ""
+          }
+          
+          ${
             JSON.parse(localStorage.getItem("userName"))
               ? `
           <div class="signout-btn-mobile">
@@ -498,6 +506,8 @@ function login() {
           ) {
             localStorage.setItem("isLoggedIn", JSON.stringify(true));
             localStorage.setItem("userName", JSON.stringify(user.name));
+            localStorage.setItem("role", JSON.stringify(user.name));
+
             Swal.fire({
               title: "Welcom Mr.Admin!",
               icon: "success",
@@ -542,6 +552,7 @@ function login() {
 function signOut() {
   localStorage.removeItem("userName");
   localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("role");
   window.location.href = "Home.html";
 }
 
