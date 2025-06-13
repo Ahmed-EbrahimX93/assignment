@@ -265,6 +265,7 @@ function collectData() {
 
   function clearData() {
     inputs.forEach((input) => (input.value = ""));
+    messageInput.value = "";
   }
 
   function displayData() {
