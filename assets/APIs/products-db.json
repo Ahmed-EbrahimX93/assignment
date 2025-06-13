@@ -64,7 +64,7 @@
       "thumbnail": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg"
     },
     {
-      "id": 1749846402272,
+      "id": "1749846402272",
       "title": "product2",
       "description": "product2",
       "price": "159",
@@ -74,12 +74,22 @@
       "thumbnail": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg"
     },
     {
-      "id": 1749846545548,
+      "id": "1749846545548",
       "title": "product3",
       "description": "product3product3product3product3product3",
       "price": "156",
       "discountPercentage": "155",
       "sku": "sku-154",
+      "images": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg",
+      "thumbnail": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg"
+    },
+    {
+      "id": 1749848824389,
+      "title": "asldfasjdhflkjsadflksadfhk",
+      "description": ";lahs;lfdas;lf jna;sfj a;lsf",
+      "price": "147",
+      "discountPercentage": "145",
+      "sku": "sku-456",
       "images": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg",
       "thumbnail": "https://i.postimg.cc/hjTp8WX5/021200661204-1.jpg"
     }
